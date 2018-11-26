@@ -6,11 +6,12 @@ Rectangle {
     id: register
     width: 320
     height: 550
+    property alias text1: text1
+    property alias next: next
+    property alias getVerifyNumber: getVerifyNumber
+    property alias verifyNumber: verifyNumber
     property alias webButton: webButton
     property alias loginButton: loginButton
-    property alias registerButton: registerButton
-    property alias passwordConfirm: passwordConfirm
-    property alias password: password
     property alias userName: userName
 
     Image {
@@ -30,7 +31,6 @@ Rectangle {
         TextField {
             id: userName
             height: 30
-            enabled: false
             horizontalAlignment: Text.AlignLeft
             font.pointSize: 12
             font.family: "微软雅黑 Light"
@@ -63,21 +63,23 @@ Rectangle {
         }
 
         TextField {
-            id: password
+            id: verifyNumber
             height: 30
             horizontalAlignment: Text.AlignLeft
             font.pointSize: 12
 
             font.family: "微软雅黑 Light"
-            anchors.top: userName.bottom
-            anchors.topMargin: 30
+            anchors.top: getVerifyNumber.bottom
+            anchors.topMargin: 20
             anchors.left: parent.left
             anchors.leftMargin: 30
             anchors.right: parent.right
             anchors.rightMargin: 30
             leftPadding: height * 2
-            echoMode: TextInput.PasswordEchoOnEdit
-            placeholderText: qsTr("请输入密码")
+            echoMode: TextInput.Normal
+            placeholderText: qsTr("请输入验证码")
+
+            validator: RegExpValidator{regExp: /[0-9][0-9][0-9][0-9]/}
 
             background: Rectangle {
                 id: rectangle3
@@ -95,64 +97,24 @@ Rectangle {
                     anchors.leftMargin: 10
                     anchors.topMargin: 5
                     anchors.bottomMargin: 5
-                    source: "images/password_01.png"
-                }
-            }
-        }
-
-        TextField {
-            id: passwordConfirm
-            height: 30
-            horizontalAlignment: Text.AlignLeft
-            font.pointSize: 12
-
-            font.family: "微软雅黑 Light"
-            anchors.top: password.bottom
-            anchors.topMargin: 30
-            anchors.left: parent.left
-            anchors.leftMargin: 30
-            anchors.right: parent.right
-            anchors.rightMargin: 30
-            leftPadding: height * 2
-            echoMode: TextInput.PasswordEchoOnEdit
-            placeholderText: qsTr("请再次输入密码")
-
-            background: Rectangle {
-                id: rectangle2
-                anchors.fill: parent
-                color: "transparent"
-                border.color: "white"
-                border.width: 1
-                radius: height / 2
-                Image {
-                    anchors.bottom: parent.bottom
-                    anchors.top: parent.top
-                    fillMode: Image.PreserveAspectFit
-                    width: height
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.topMargin: 5
-                    anchors.bottomMargin: 5
-                    source: "images/password_01.png"
+                    source: "images/verify.png"
                 }
             }
         }
 
         Button {
-            id: registerButton
+            id: getVerifyNumber
 
             height: 30
-            text: qsTr("注    册")
+            text: qsTr("获取验证码")
             background: Rectangle {
-                color: registerButton.pressed ? "#c3bcbc" : "#fbf2f2"
+                color: getVerifyNumber.pressed ? "#c3bcbc" : "#fbf2f2"
                 radius: 5
                 anchors.fill: parent
             }
-            anchors.left: parent.left
             anchors.right: parent.right
-            anchors.topMargin: 30
-            anchors.leftMargin: 30
-            anchors.top: passwordConfirm.bottom
+            anchors.topMargin: 20
+            anchors.top: userName.bottom
             anchors.rightMargin: 30
             font.pointSize: 12
             font.family: "微软雅黑 Light"
@@ -186,8 +148,8 @@ Rectangle {
             id: row
             height: 30
             spacing: -10
-            anchors.top: registerButton.bottom
-            anchors.topMargin: 50
+            anchors.top: next.bottom
+            anchors.topMargin: 30
             anchors.right: parent.right
             anchors.rightMargin: 30
             anchors.left: parent.left
@@ -217,6 +179,7 @@ Rectangle {
                     anchors.fill: parent
                     color: "transparent"
                     Text {
+                        id: text1
                         anchors.centerIn: parent
                         text: qsTr("登录")
                         color: "white"
@@ -227,12 +190,31 @@ Rectangle {
                 }
             }
         }
+
+        Button {
+            id: next
+            height: 30
+            text: qsTr("下 一 步")
+            anchors.left: parent.left
+            anchors.leftMargin: 30
+            background: Rectangle {
+                color: next.pressed ? "#c3bcbc" : "#fbf2f2"
+                radius: 5
+                anchors.fill: parent
+            }
+            font.pointSize: 12
+            anchors.right: parent.right
+            anchors.top: verifyNumber.bottom
+            anchors.rightMargin: 30
+            anchors.topMargin: 20
+            font.family: "微软雅黑 Light"
+        }
     }
 }
 
 
 /*##^## Designer {
     D{i:4;anchors_height:30}D{i:8;anchors_height:30}D{i:18;anchors_width:200;anchors_x:37;anchors_y:425}
-D{i:1;anchors_x:8;anchors_y:137}
+D{i:22;anchors_x:6;anchors_y:4}D{i:1;anchors_x:8;anchors_y:137}
 }
  ##^##*/

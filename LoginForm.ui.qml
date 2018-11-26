@@ -29,7 +29,7 @@ Rectangle {
             y: 168
             height: 29
             font.weight: Font.Light
-            font.pointSize: 10
+            font.pointSize: 12
 
             anchors.top: parent.top
             anchors.topMargin: parent.height * 0.3
@@ -38,8 +38,11 @@ Rectangle {
             anchors.rightMargin: 30
             anchors.left: parent.left
             anchors.leftMargin: 30
-            placeholderText: qsTr("用户名/邮箱/手机号")
+            placeholderText: qsTr("邮箱地址")
 
+            validator: RegExpValidator {
+                regExp: /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
+            }
             font.family: "微软雅黑 Light"
             background: Rectangle {
                 anchors.fill: parent
@@ -79,7 +82,7 @@ Rectangle {
             anchors.topMargin: 20
             height: 29
             font.weight: Font.Light
-            font.pointSize: 10
+            font.pointSize: 12
             leftPadding: height * 2
             anchors.right: parent.right
             anchors.rightMargin: 30
@@ -120,7 +123,7 @@ Rectangle {
             anchors.rightMargin: 30
             anchors.left: parent.left
             anchors.leftMargin: 30
-            font.pointSize: 10
+            font.pointSize: 12
             font.family: "微软雅黑 Light"
             background: Rectangle {
                 color: loadButton.pressed ? "#c3bcbc" : "#fbf2f2"
@@ -184,7 +187,7 @@ Rectangle {
                 antialiasing: true
                 checked: true
                 font.family: "微软雅黑 Light"
-                font.pointSize: 11
+                font.pointSize: 12
                 spacing: 10
                 scale: 0.5
                 display: AbstractButton.TextOnly
@@ -230,7 +233,7 @@ Rectangle {
                         text: qsTr("立即注册>>")
                         color: "black"
                         font.family: "微软雅黑 Light"
-                        font.pointSize: 8
+                        font.pointSize: 10
                     }
                 }
             }
@@ -251,7 +254,7 @@ Rectangle {
                         text: qsTr("忘记密码?")
                         color: "black"
                         font.family: "微软雅黑 Light"
-                        font.pointSize: 8
+                        font.pointSize: 10
                     }
                 }
             }
@@ -276,7 +279,7 @@ Rectangle {
                     font.underline: true
                     color: "black"
                     font.family: "微软雅黑 Light"
-                    font.pointSize: 8
+                    font.pointSize: 10
                 }
             }
         }
